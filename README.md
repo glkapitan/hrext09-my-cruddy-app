@@ -14,6 +14,7 @@ Create Read Update and Delete framework using JS
 - [ ] Item that I added goes here...
 
 -- Application Idea: Teenage boys care guide for Moms
+Application for Moms to share their tips on handling different type of situations arising while raising teenage boys
 
 -- Data Design proposal:
 
