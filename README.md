@@ -53,3 +53,10 @@ Four buttons: 1: submit data entered in the form to the local storage;
 			  2: retrieve data fro local storage based on the key elements (category and situation description).  Retrieve means populate the following fields: care tip, constraints, side effects and notes
 			  3: update dataand submit to local storage. Category and situation are not updatable
 			  4: delete data. Remove record from local storage
+
+
+Things to figure out:
+		- How to work with local storage. How to create keys
+		- How to populate drop down with list of  elements
+		- How to work with drop downs
+		- How to create and works with form 
