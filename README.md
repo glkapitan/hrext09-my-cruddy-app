@@ -24,6 +24,7 @@ Application to store care instructions for the indoor plants
 			-  Violets
 			-  Ferns
 			-  Aroid
+			-  etc
 
 		Name of the Plant:
 
@@ -44,8 +45,12 @@ Application to store care instructions for the indoor plants
 - Form with one drop down box to select category
 - Input text area to enter name of the plant
 - Input area to enter Water care instructions
+			- how many times a month
+			- last time watered
 - Input area to enter Light care instructions
 - Input area to enter Fertilizer care instructions
+			- how many times a month
+			- last time fed
 - Input area to enter notes
 
 Four buttons: 1: submit data entered in the form to the local storage; 
@@ -59,3 +64,5 @@ Things to figure out:
 		- How to populate drop down with list of elements
 		- How to work with drop downs
 		- How to create and works with form 
+
+If time permits:  Some sort of chart that represents current week schedule for watering and feeding
