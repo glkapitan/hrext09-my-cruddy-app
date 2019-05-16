@@ -8,9 +8,30 @@
 - [ ] UI/UX considerations (how are we going to use this)
 
 */
+$(".sub-item").click(function(){
+  //  $(this).toggleClass("completed");
+  alert("test")
+});
+
+/*$("span").click(function(event){
+
+    $(this).parent().fadeOut(500, function(){
+    $(this).remove()
+  })
+  event.stopPropagation();
+});*/
+
+$("#category").keypress(function(event){
+  if (event.which===13) {
+    var newCategory = $(this).val();
+    $("ul").append("<li>" +newCategory+ "</li>")
+        }
+        event.stopPropagation();
+});
 
 //localStorage interaction function
-//get item
+//get 
+/*
 var getItem = function(key) {
   return window.localStorage.getItem(key);
 }
@@ -69,3 +90,4 @@ $(document).ready(function() {
     }
   });
 });
+*/
