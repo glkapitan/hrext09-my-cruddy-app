@@ -60,3 +60,13 @@ background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, F
 	color: #aee08f;
 	float: left;
 }
+
+#myList {
+  background-color: #aee08f;
+  color: #223;
+  padding: 7px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  width: 150px;
+}
