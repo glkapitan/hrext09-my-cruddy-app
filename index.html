@@ -31,11 +31,13 @@
   <form>
    <div id="container">
     <h1 class="text-center"> Plants </h1>
+    <ul id="category-list">
+    </ul>
    
     
     <ul>
   <li>
-    <label for="parent1">   Orchids<i class="fas fa-leaf"></i></label>
+    <label for="parent1">   Orchids <i class="fas fa-leaf"></i></label>
     <input type="radio" id="parent1" hidden name="sub-menu-trigger">
 
     <ul class="sub-menu">
@@ -108,23 +110,25 @@
           <p>
              <label>Plant Category</label>
              <select id = "myList">
-               <option value = "1">Orchids</option>
-               <option value = "2">Ferns</option>
-               <option value = "3">Violets</option>
-               <option value = "4">Aroids</option>
-               <option value = "5">Succulents</option>
-             </select>
+              </select>
           </p>
        </fieldset>
 
-   <input class = "form-control" type="text" name="water" placeholder="watering">
-   <input class = "form-control" type="text" name="light" placeholder="light">
-   <input class = "form-control" type="text" name="temperature" placeholder="temperature">
-   <input class = "form-control" type="text" name="fertilizer" placeholder="fertilizer">
-   <input class = "form-control" type="text" name="notes" placeholder="notes">
-    <button class="btn btn-lg btn-primary"> Add New </button>
-    <button class="btn btn-lg btn-primary"> Update </button>
-    <button class="btn btn-lg btn-primary"> Delete </button>
+   <label class=label for="name">Plant Name: </label>
+   <input id="name" class = "form-control" type="text" name="name" placeholder="plant name">
+   <label class=label for="water">Water Requirements: </label>
+   <input id="water" class = "form-control" type="text" name="water" placeholder="once a week">
+   <label class=label for="light">Light Requirements: </label>
+   <input id="light" class = "form-control" type="text" name="light" placeholder="bright light">
+   <label class=label for="temperature">Temperature Requirements: </label>
+   <input id="temperature" class = "form-control" type="text" name="temperature" placeholder="temperature">
+   <label class=label for="fertilizer">Fertilizer Requirements: </label>
+   <input id="fertilizer" class = "form-control" type="text" name="fertilizer" placeholder="twice a month during spring/summer">
+   <label class=label for="notes">Add your notes: </label>
+   <input id="notes" class = "form-control" type="text" name="notes" placeholder="notes">
+   <button id = "addNew" class="btn btn-lg btn-primary"> Add New </button>
+   <button id = "saveChanges" class="btn btn-lg btn-primary"> Save Changes </button>
+   <button id = "delete" class="btn btn-lg btn-primary"> Delete </button>
 
  </div>
 </form>
