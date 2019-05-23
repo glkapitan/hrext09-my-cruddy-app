@@ -10,6 +10,24 @@
 */
 $(document).ready(function() {
 
+  if ( keyExists('Category')!==true){
+    var categoryOBject = {
+    '1': 'Orchids', 
+    '2': 'Ferns',
+    '3': 'Aroids',
+    '4': 'Violets',
+    '5': 'Tropicals',
+    '6': 'Begonias',
+    '7': 'Cactus',
+    '8': 'Succulents',
+    '9': 'Hoyas',
+    '10': 'Fuchsias'
+  };
+    localStorage.setItem('Category', JSON.stringify(categoryOBject));
+  };
+
+
+
 var categoryArray = [];
 var categoryObj = {}
 
@@ -49,23 +67,16 @@ $('#addNew').click(function(event) {
     event.preventDefault();
     
 
-$('#name').val(""); 
-$('#water').val(""); 
-$('#light').val(""); 
-$('#temperature').val(""); 
-$('#fertilizer').val(""); 
-$('#notes').val(""); 
+ emptyForm();
 $(this).prop('disabled', true);
 
-
-      //current key doesnt exist, do stuff
-   
   });
 
 
 $('#saveChanges').click(function(event) {
     event.preventDefault();
-    
+
+
 var category = parseInt($('#myList').val()) + 1; 
 var categoryObj = JSON.parse(localStorage.getItem('Category'))
 category = categoryObj[category]
@@ -93,7 +104,12 @@ var notes = $('#notes').val();
     localStorage.setItem(name, careInstructionJson);
     var careInstructionJson = localStorage.getItem(name);
     var newMyObject = JSON.parse(careInstructionJson);
-   // alert(newMyObject.name + " is " + newMyObject.water + newMyObject.light);
+  
+    $('#myList').empty();
+
+     populateDropDown('#myList','Category',1);
+     $("#myList option:contains(" + category + ")").attr('selected', 'selected');
+  
 
 $('#addNew').prop('disabled', false);
 
@@ -106,19 +122,18 @@ $('#delete').click(function(event) {
     
 
     var key = $('#name').val();
+   if ( keyExists(key)){
 
-   window.localStorage.removeItem (key)
+    window.localStorage.removeItem (key)
+    } else {
+     emptyForm();
+    }
 
-//$('#name').val(""); 
-//$('#water').val(""); 
-//$('#light').val(""); 
-//$('#temperature').val(""); 
-//$('#fertilizer').val(""); 
-//$('#notes').val(""); 
+
 $('#addNew').prop('disabled', false);
+$('#myList').empty();
+ populateDropDown('#myList','Category',1);
 
-
-      //current key doesnt exist, do stuff
    
   });
 
@@ -160,10 +175,9 @@ for (var i = 0; i<plantArray.length; i++){
 });
 
 
-
 });
 
-var populateDropDown = function(dropDown,localStorageKey){
+var populateDropDown = function(dropDown,localStorageKey,option){
 
 
 var categoryArray = [];
@@ -175,6 +189,12 @@ var categoryObj = {}
 for (var key in categoryObj){
   categoryArray.push(categoryObj[key])
 }  
+if (option ===1){
+  $.each(categoryArray, function(val, text) {
+            $(dropDown).append( $('<option></option>').val(val).html(text) )
+       });
+  }
+  else {
  
  $.each(categoryArray, function(val, text) {
             $(dropDown).append( $('<option></option>').val(val).html(text) )
@@ -182,6 +202,7 @@ for (var key in categoryObj){
             $plantName.css("font-weight","Bold");
             $plantName.css("font-size", "14px");
           });
+}
 
 };
 
@@ -190,6 +211,19 @@ var getItem = function(key) {
   return JSON.parse(window.localStorage.getItem(key));
 }
 
+var keyExists = function(key) {
+  var currentValue = getItem(key);
+  return currentValue !== null;
+}
+
+var emptyForm = function(){
+  $('#name').val(""); 
+$('#water').val(""); 
+$('#light').val(""); 
+$('#temperature').val(""); 
+$('#fertilizer').val(""); 
+$('#notes').val(""); 
+}
 
 var populateForm = function(obj) {
 
