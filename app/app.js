@@ -10,6 +10,23 @@
 */
 $(document).ready(function() {
 
+  $(".nav-link").click(function(event) {
+    event.preventDefault();
+    $('#about').show();
+   
+    $('#about').css("width","300px");
+    $('#about').css("padding","10px 20px");
+    $('#about').css("border","solid #2E8B57 0.3em");
+    $('#okabout').css("width","200px");
+
+
+  });
+
+  $("#okabout").click(function(event) {
+    event.preventDefault();
+    $('#about').hide();
+  });
+
   if ( keyExists('Category')!==true){
     var categoryOBject = {
     '1': 'Orchids', 
