@@ -26,19 +26,6 @@ populateDropDown('#myList','Category');
 
 
 
-$(".sub-item").click(function(){
-  //  $(this).toggleClass("completed");
-  alert("test")
-});
-
-/*$("span").click(function(event){
-
-    $(this).parent().fadeOut(500, function(){
-    $(this).remove()
-  })
-  event.stopPropagation();
-});*/
-
 $("#category").keypress(function(event){
   if (event.which===13) {
     var newCategory = $(this).val();
@@ -47,6 +34,16 @@ $("#category").keypress(function(event){
         event.stopPropagation();
 });
 
+$('#container').click(function(event) {
+    event.preventDefault();
+
+    if ((event.target.tagName.toLowerCase()) == 'a') {
+          var plantInfo = getItem(event.target.text);
+         
+
+          populateForm(plantInfo)
+     }
+  });
 
 $('#addNew').click(function(event) {
     event.preventDefault();
@@ -69,7 +66,11 @@ $(this).prop('disabled', true);
 $('#saveChanges').click(function(event) {
     event.preventDefault();
     
-var category = $('#myList').val(); 
+var category = parseInt($('#myList').val()) + 1; 
+var categoryObj = JSON.parse(localStorage.getItem('Category'))
+category = categoryObj[category]
+//console.log(categoryObj)
+
 var name = $('#name').val(); 
 var water = $('#water').val();
 var light = $('#light').val();
@@ -92,25 +93,21 @@ var notes = $('#notes').val();
     localStorage.setItem(name, careInstructionJson);
     var careInstructionJson = localStorage.getItem(name);
     var newMyObject = JSON.parse(careInstructionJson);
-    alert(newMyObject.name + " is " + newMyObject.water + newMyObject.light);
+   // alert(newMyObject.name + " is " + newMyObject.water + newMyObject.light);
 
-
-//$('#water').val(""); 
-//$('#light').val(""); 
-//$('#temperature').val(""); 
-//$('#fertilizer').val(""); 
-//$('#notes').val(""); 
 $('#addNew').prop('disabled', false);
 
 
-      //current key doesnt exist, do stuff
-   
   });
 
 
 $('#delete').click(function(event) {
     event.preventDefault();
     
+
+    var key = $('#name').val();
+
+   window.localStorage.removeItem (key)
 
 //$('#name').val(""); 
 //$('#water').val(""); 
@@ -124,6 +121,8 @@ $('#addNew').prop('disabled', false);
       //current key doesnt exist, do stuff
    
   });
+
+
 
 $('.plant-name').click(function(event) {
     event.preventDefault();
@@ -157,23 +156,21 @@ for (var i = 0; i<plantArray.length; i++){
   var $subItemPlantName =  $(this).append('<li class="sub-name" style="text-indent: 8px"><a href="#">' + plantArray[i] + '</a></li>');
       
 };
-  // $subItemPlantName.css("color", "#000000");
-   //$subItemPlantName.css("color", "#3CB371");
-  // $subItemPlantName.css("position", "absolute");
+  
 });
-    
-//});
-
 
 
 
 });
 
 var populateDropDown = function(dropDown,localStorageKey){
+
+
 var categoryArray = [];
 var categoryObj = {}
 
  categoryObj = JSON.parse(localStorage.getItem(localStorageKey));
+
 
 for (var key in categoryObj){
   categoryArray.push(categoryObj[key])
@@ -189,15 +186,31 @@ for (var key in categoryObj){
 };
 
 
+var getItem = function(key) {
+  return JSON.parse(window.localStorage.getItem(key));
+}
+
+
+var populateForm = function(obj) {
+
+
+//$("#myList").find( obj.category).attr("selected", "selected");
+$("#myList option:contains(" + obj.category + ")").attr('selected', 'selected');
+          $('#name').val(obj.name); 
+          $('#water').val(obj.water); 
+          $('#light').val(obj.light); 
+          $('#temperature').val(obj.temperature); 
+          $('#fertilizer').val(obj.fertilizer); 
+          $('#notes').val(obj.notes); 
+  }
+
+
 
 
 
 //localStorage interaction function
 //get 
 /*
-var getItem = function(key) {
-  return window.localStorage.getItem(key);
-}
 
 //create
 var createItem = function(key, value) {
